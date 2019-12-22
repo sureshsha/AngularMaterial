@@ -23,6 +23,10 @@ import { DishService } from './services/dish.service';
 import { AppModuleModule } from './app-module/app-module.module';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { LeaderService } from './services/leader.service';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +49,16 @@ import { LeaderService } from './services/leader.service';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    AppModuleModule
+    AppModuleModule,
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
+
 
   ],
+  entryComponents: [LoginComponent],
   providers: [
     DishService,
     PromotionService,
