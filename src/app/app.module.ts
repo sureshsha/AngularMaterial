@@ -25,8 +25,9 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// tslint:disable-next-line: max-line-length
+import { MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule, MatSlideToggle, MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,12 @@ import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatSlideToggleModule
+
+
 
 
   ],
