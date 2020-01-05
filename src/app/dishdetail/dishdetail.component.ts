@@ -52,7 +52,7 @@ export class DishdetailComponent implements OnInit {
   createForm() {
     this.userComments = this.fb.group({
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      rating: [5],
+      rating: 5,
       comment: ['', Validators.required]
     });
 
@@ -65,21 +65,23 @@ export class DishdetailComponent implements OnInit {
 
 
   onSubmit() {
-    this.Comments = {
+    // this.Comments = this.userComments.value;
+    const data = {
       rating: this.userComments.value.rating,
       comment: this.userComments.value.comment,
       author: this.userComments.value.author,
       date: new Date()
     };
+    this.Comments = data;
     console.log(this.Comments);
     this.dish.comments.push(this.Comments);
-    this.userComments.reset({
-      author: '',
-      comment: '',
-      rating: 5
-    });
+    this.userComments.reset();
 
-    this.formDirective.resetForm();
+    this.formDirective.resetForm({
+      author: '',
+      rating: '5',
+      comment: ''
+    });
   }
 
   onValueChanged(data?: any) {
