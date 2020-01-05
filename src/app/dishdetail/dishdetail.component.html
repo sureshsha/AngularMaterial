@@ -38,8 +38,36 @@
         <p matLine>{{d.comment}}</p>
         <p matLine>{{d.rating}} stars</p>
         <p matLine>{{d.author}} {{d.date | date}}</p>
-    
     </mat-list-item>
+    <mat-list-item *ngIf="userComments.valid">
+      <p matLine>{{userComments.value.comment}}</p>
+      <p matLine>{{userComments.value.rating}} stars</p>
+      <p matLine>{{userComments.value.author}}</p>
+  </mat-list-item>
     
   </mat-list>
+  <form novalidate [formGroup]='userComments' #fform='ngForm' (ngSubmit)="onSubmit()">
+  <p>
+  <mat-form-field class="full-width">
+    <input matInput formControlName="author" placeholder="Name" type="text" required>
+    <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+  </mat-form-field>
+</p>
+
+<mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1"
+  min="1"
+  max="5" formControlName="rating">
+</mat-slider>
+
+<p>
+  <mat-form-field class="full-width">
+    <textarea matInput formControlName="comment" placeholder="Comments" rows=12 required></textarea>
+    <mat-error *ngIf="formErrors.comment">{{formErrors.comments}}</mat-error>
+  </mat-form-field>
+</p>
+<button type="submit" mat-button class="background-primary text-floral-white" [disabled]='userComments.invalid'>Submit</button>
+  </form>
 </div>

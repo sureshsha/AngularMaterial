@@ -8,6 +8,7 @@ import { delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DishService {
+  [x: string]: any;
 
 
   constructor() { }
