@@ -29,7 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // tslint:disable-next-line: max-line-length
 import { MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule, MatSlideToggle, MatSlideToggleModule } from '@angular/material';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
+import { baseUrl } from './shared/baseurl';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule
 
 
 
@@ -71,7 +74,8 @@ import {MatSliderModule} from '@angular/material/slider';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    { provide: 'BaseURL', useValue: baseUrl }
   ],
   bootstrap: [AppComponent]
 })

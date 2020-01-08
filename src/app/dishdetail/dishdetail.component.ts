@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Inject} from '@angular/core';
 import { Dish } from '../shared/dish';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -6,6 +6,7 @@ import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
+
 
 @Component({
   selector: 'app-dishdetail',
@@ -19,7 +20,7 @@ export class DishdetailComponent implements OnInit {
   next: string;
   prev: string;
   userComments: FormGroup;
-  Comments: any;
+  Comments: Comment;
 
 
 
@@ -45,7 +46,8 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishService: DishService,
               private location: Location,
               private route: ActivatedRoute,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              @Inject('BaseURL') private BaseURL ) {
                 this.createForm();
                }
 
@@ -65,14 +67,14 @@ export class DishdetailComponent implements OnInit {
 
 
   onSubmit() {
-    // this.Comments = this.userComments.value;
-    const data = {
+    this.Comments = this.userComments.value;
+    /*const data = {
       rating: this.userComments.value.rating,
       comment: this.userComments.value.comment,
       author: this.userComments.value.author,
       date: new Date()
-    };
-    this.Comments = data;
+    };*/
+    this.Comments.date = new Date().toISOString();
     console.log(this.Comments);
     this.dish.comments.push(this.Comments);
     this.userComments.reset();
