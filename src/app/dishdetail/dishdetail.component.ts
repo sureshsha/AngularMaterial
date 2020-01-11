@@ -79,7 +79,9 @@ export class DishdetailComponent implements OnInit {
     this.Comments.date = new Date().toISOString();
     console.log(this.Comments);
     this.dishCopy.comments.push(this.Comments);
-    this.dishService.putDishes(this.dishCopy);
+    this.dishService.putDishes(this.dishCopy).subscribe(dish => {
+      this.dish = dish; this.dishCopy = dish;
+    }, errmess => { this.dish = null; this.dishCopy = null; this.dishError = <any>errmess; });
     this.userComments.reset();
 
     this.formDirective.resetForm({
