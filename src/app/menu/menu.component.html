@@ -5,7 +5,20 @@
             <hr>
         </div>
     </div>
-
+    
+<div>
+    <div class="loading-indicator">
+        <div fxFlex [hidden]="dishes || errorMsg" >
+        
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <h5>Loading...Please Wait!!</h5>
+        
+    </div>
+    <div fxFlex *ngIf="errorMsg">
+        <h2>Error</h2>
+        <h4>{{errorMsg}}</h4>
+      </div>
+    </div>
     <div fxFlex *ngIf="dishes">
         <mat-grid-list cols='2' rowHeight="200px">
             <mat-grid-tile *ngFor="let dish of dishes" [routerLink]= "['/dish',dish.id]">
@@ -16,12 +29,8 @@
             </mat-grid-tile>
         </mat-grid-list>
     </div>
-    <div class="center">
-    <div fxFlex [hidden]="dishes" >
-        
-            <mat-spinner></mat-spinner>
-        <h5>Loading...Please Wait!!</h5>
-        
-    </div>
+    
+
+</div>
     
 </div>

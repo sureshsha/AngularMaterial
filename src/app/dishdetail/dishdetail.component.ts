@@ -21,6 +21,8 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   userComments: FormGroup;
   Comments: Comment;
+  dishError: string;
+  dishCopy: Dish;
 
 
 
@@ -76,7 +78,8 @@ export class DishdetailComponent implements OnInit {
     };*/
     this.Comments.date = new Date().toISOString();
     console.log(this.Comments);
-    this.dish.comments.push(this.Comments);
+    this.dishCopy.comments.push(this.Comments);
+    this.dishService.putDishes(this.dishCopy);
     this.userComments.reset();
 
     this.formDirective.resetForm({
@@ -110,13 +113,15 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit() {
 
-  this.dishService.getDishIds().subscribe(dishId => this.dishIds = dishId );
+  this.dishService.getDishIds().subscribe(dishId => this.dishIds = dishId);
+
   // tslint:disable-next-line: no-string-literal
   this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
   .subscribe((dish) => {
     this.dish = dish;
+    this.dishCopy = dish;
     this.setPrevNext(dish.id);
-  });
+  }, error => this.dishError = error);
   }
 
   goBack(): void {

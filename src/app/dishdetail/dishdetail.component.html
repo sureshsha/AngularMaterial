@@ -5,6 +5,14 @@
     fxLayoutAlign.gt-md="space-around center"
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
+    <div>
+
+      
+    </div>
+    <div fxFlex *ngIf="dishError">
+      <h2>Error</h2>
+      <h4>{{dishError}}</h4>
+    </div>
 
   <div fxFlex="40">
     <mat-card *ngIf="dish">
@@ -46,6 +54,8 @@
   </mat-list-item>
     
   </mat-list>
+
+
   <form novalidate [formGroup]='userComments' #fform='ngForm' (ngSubmit)="onSubmit()">
   <p>
   <mat-form-field class="full-width">
@@ -61,9 +71,9 @@ formControlName="rating"
   tickInterval="1"
   min="1"
   max="5" >
-</mat-slider>
+  </mat-slider>
 
-<p>
+  <p>
   <mat-form-field class="full-width">
     <textarea matInput formControlName="comment" placeholder="Comments" rows=12 required></textarea>
     <mat-error *ngIf="formErrors.comment">{{formErrors.comments}}</mat-error>
