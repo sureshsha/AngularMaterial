@@ -32,6 +32,7 @@ import { MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule,
 import { MatSliderModule } from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
 import { baseUrl } from './shared/baseurl';
+import { HighlightDirective } from './directives/highlight.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { baseUrl } from './shared/baseurl';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
